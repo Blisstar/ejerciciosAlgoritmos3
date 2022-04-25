@@ -90,7 +90,7 @@ quitarUnaCantidadDePolillas: cantidadPolillasQuitar
 	cantidadDePolillas := cantidadDePolillas - cantidadPolillasQuitar.! !
 
 
-!Habitat class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 18:53:06'!
+!Habitat class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 19:13:42'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -142,7 +142,7 @@ cantidadHuevosAvispaLara
 	^cantidadHuevosAvispaLara! !
 
 
-!LaAvispaLara class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 18:53:06'!
+!LaAvispaLara class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 19:13:42'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -188,7 +188,7 @@ cantidadHuevosAvispaOriana
 	^cantidadHuevosAvispaOriana! !
 
 
-!LaAvispaOriana class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 18:53:06'!
+!LaAvispaOriana class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 19:13:42'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -233,7 +233,7 @@ cantidadHuevosAvispaOrnella
 	^cantidadHuevosAvispaOrnella.! !
 
 
-!LaAvispaOrnella class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 18:53:06'!
+!LaAvispaOrnella class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 19:13:42'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -278,7 +278,7 @@ cantidadHuevosAvispaPolly
 	^cantidadHuevosAvispaPolly.! !
 
 
-!LaAvispaPolly class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 18:53:06'!
+!LaAvispaPolly class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 19:13:42'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -557,7 +557,7 @@ retrocederElHabitatAlInicioDeLosTiempos
 	Habitat matarTodasLasPolillas.! !
 
 
-!PruebasReproduccionDeAvispas class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 18:53:06'!
+!PruebasReproduccionDeAvispas class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 19:13:42'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
