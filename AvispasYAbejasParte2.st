@@ -9,32 +9,48 @@ DenotativeObject subclass: #Habitat
 
 !classDefinition: 'Habitat class' category: 'AvispasYAbejasParte2'!
 Habitat class
-	instanceVariableNames: 'cantidadDeHuevosDeAvispas hayAimento'!
+	instanceVariableNames: 'cantidadDeOrugas cantidadDeHuevosDeAvispas hayAimento cantidadDeOrugasDeAvispas'!
+
+!Habitat class methodsFor: 'getters' stamp: 'Joel 4/25/2022 11:14:37'!
+cantidadDeAvispas
+	^1! !
 
 !Habitat class methodsFor: 'getters' stamp: 'JMK 4/21/2022 20:08:50'!
 cantidadDeHuevosDeAvispas
 	^cantidadDeHuevosDeAvispas! !
+
+!Habitat class methodsFor: 'getters' stamp: 'Joel 4/25/2022 10:40:36'!
+cantidadDeOrugasDeAvispas
+	^cantidadDeOrugasDeAvispas! !
 
 
 !Habitat class methodsFor: 'setters' stamp: 'JMK 4/21/2022 20:20:55'!
 colocarAlimento
 	hayAimento := true .! !
 
-!Habitat class methodsFor: 'setters' stamp: 'JMK 4/21/2022 20:07:15'!
-matarAvispas
-	cantidadDeHuevosDeAvispas := 0.! !
-
-!Habitat class methodsFor: 'setters' stamp: 'JMK 4/21/2022 20:33:03'!
-ponerHuevo
+!Habitat class methodsFor: 'setters' stamp: 'Joel 4/25/2022 11:11:18'!
+colocarHuevo
 	hayAimento ifTrue: [cantidadDeHuevosDeAvispas := cantidadDeHuevosDeAvispas + 1 ]! !
 
+!Habitat class methodsFor: 'setters' stamp: 'Joel 4/25/2022 10:58:22'!
+colocarOruga
+	cantidadDeOrugasDeAvispas := cantidadDeOrugasDeAvispas + 1.
+! !
 
-!Habitat class methodsFor: '--** private fileout/in **--' stamp: 'JMK 4/25/2022 10:15:42'!
+!Habitat class methodsFor: 'setters' stamp: 'Joel 4/25/2022 10:42:18'!
+matarAvispas
+	cantidadDeHuevosDeAvispas := 0.
+	cantidadDeOrugasDeAvispas := 0.! !
+
+
+!Habitat class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 11:17:44'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
-	cantidadDeHuevosDeAvispas := 2.
-	hayAimento := true.! !
+	cantidadDeOrugas := nil.
+	cantidadDeHuevosDeAvispas := 1.
+	hayAimento := true.
+	cantidadDeOrugasDeAvispas := 1.! !
 
 
 !classDefinition: #LaAvispaOriana category: 'AvispasYAbejasParte2'!
@@ -50,9 +66,9 @@ DenotativeObject subclass: #LaAvispaOriana
 LaAvispaOriana class
 	instanceVariableNames: ''!
 
-!LaAvispaOriana class methodsFor: 'actions' stamp: 'JMK 4/21/2022 20:27:30'!
+!LaAvispaOriana class methodsFor: 'actions' stamp: 'Joel 4/25/2022 11:16:06'!
 intentarReproducirse
-	Habitat ponerHuevo.! !
+	Habitat cantidadDeAvispas > 0 ifTrue:[Habitat colocarHuevo.]! !
 
 
 !classDefinition: #PruebasReproduccionDeAvispas category: 'AvispasYAbejasParte2'!
@@ -93,14 +109,14 @@ test03CadaVezQueOrianaSeReproduceDejaUnHuevoMas
 	
 	Assert that: self habitat cantidadDeHuevosDeAvispas isEqualTo: 2.! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'tests - Oriana' stamp: 'JMB 4/21/2022 12:12:53'!
+!PruebasReproduccionDeAvispas class methodsFor: 'tests - Oriana' stamp: 'Joel 4/25/2022 10:52:38'!
 test04ParaDejarUnHuevoOrianaLaAvispaReduceLaPoblacionDeUnaOrugaANinguna
 	self retrocederElHabitatAlInicioDeLosTiempos.
 	self queElHabitatTengaUnaOrugaMas.
 	
 	self laAvispaOriana intentarReproducirse.
 	
-	Assert that: self habitat cantidadDeOrugas isEqualTo: 0.! !
+	Assert that: self habitat cantidadDeOrugasDeAvispas isEqualTo: 0.! !
 
 !PruebasReproduccionDeAvispas class methodsFor: 'tests - Oriana' stamp: 'JMB 4/21/2022 12:13:43'!
 test05ParaDejarUnHuevoOrianaLaAvispaDecrementaEnUnoLaPoblacionDeOrugasDelHabitat
@@ -310,9 +326,9 @@ queElHabitatTengaDosOrugasMas
 queElHabitatTengaDosPolillasMas
 	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:15:37'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'Joel 4/25/2022 11:07:34'!
 queElHabitatTengaUnaOrugaMas
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	self habitat colocarOruga! !
 
 !PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:15:42'!
 queElHabitatTengaUnaPolillaMas
@@ -323,7 +339,7 @@ retrocederElHabitatAlInicioDeLosTiempos
 	Habitat matarAvispas.! !
 
 
-!PruebasReproduccionDeAvispas class methodsFor: '--** private fileout/in **--' stamp: 'JMK 4/25/2022 10:15:42'!
+!PruebasReproduccionDeAvispas class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 11:17:44'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
