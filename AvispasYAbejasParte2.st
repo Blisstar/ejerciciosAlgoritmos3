@@ -9,48 +9,28 @@ DenotativeObject subclass: #Habitat
 
 !classDefinition: 'Habitat class' category: 'AvispasYAbejasParte2'!
 Habitat class
-	instanceVariableNames: 'cantidadHuevosAvispaOrnella cantidadDeAlimento hayAvispas cantidadDePolillas cantidadDeAvispas cantidadDeOrugasDeAvispas hayAimento cantidadDeHuevosDeAvispas hayOruga hayPolilla hayPolillas cantidadHuevosAvispaOriana cantidadHuevosAvispaPolly'!
+	instanceVariableNames: 'cantidadDeAlimento hayAvispas cantidadDePolillas cantidadDeAvispas cantidadDeOrugasDeAvispas hayAimento cantidadDeHuevosDeAvispas hayOruga hayPolilla hayPolillas'!
 
 !Habitat class methodsFor: 'getters' stamp: 'Joel 4/25/2022 11:14:37'!
 cantidadDeAvispas
 	^1! !
 
-!Habitat class methodsFor: 'getters' stamp: 'JMK 4/25/2022 13:15:01'!
+!Habitat class methodsFor: 'getters' stamp: 'JMK 4/25/2022 16:36:50'!
 cantidadDeHuevosDeAvispas
-	cantidadDeHuevosDeAvispas := cantidadHuevosAvispaOriana + cantidadHuevosAvispaOrnella + cantidadHuevosAvispaPolly.
 	^cantidadDeHuevosDeAvispas! !
 
-!Habitat class methodsFor: 'getters' stamp: 'Joel 4/25/2022 10:40:36'!
+!Habitat class methodsFor: 'getters' stamp: 'JMK 4/25/2022 15:04:20'!
 cantidadDeOrugasDeAvispas
-	^cantidadDeOrugasDeAvispas! !
+	^cantidadDeOrugasDeAvispas ! !
 
-!Habitat class methodsFor: 'getters' stamp: 'JMK 4/25/2022 13:11:48'!
-cantidadHuevosAvispaOriana
-	^cantidadHuevosAvispaOriana.! !
 
-!Habitat class methodsFor: 'getters' stamp: 'JMK 4/25/2022 13:13:10'!
-cantidadHuevosAvispaOrnella
-	^cantidadHuevosAvispaOrnella.! !
-
-!Habitat class methodsFor: 'getters' stamp: 'JMK 4/25/2022 13:13:45'!
-cantidadHuevosAvispaPolly
-	^cantidadHuevosAvispaPolly.! !
-
+!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 16:21:22'!
+IncrementarUnaCantidadDeOrugasDeAvispas: cantidadOrugasAgregar
+	cantidadDeOrugasDeAvispas := cantidadDeOrugasDeAvispas + cantidadOrugasAgregar.! !
 
 !Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 12:52:36'!
 cantidadDePolillas
 	^cantidadDePolillas.! !
-
-!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 12:43:23'!
-colocarAlimento
-	cantidadDeAlimento := cantidadDeAlimento +1.
-	hayAimento := true .! !
-
-!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 12:57:38'!
-colocarHuevo
-	cantidadDeHuevosDeAvispas := cantidadDeHuevosDeAvispas + 1.
-	cantidadDeOrugasDeAvispas := cantidadDeOrugasDeAvispas -1.
-	cantidadDePolillas := cantidadDePolillas -1.! !
 
 !Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 12:14:55'!
 colocarOruga: numeroDeOrugasColocar
@@ -62,9 +42,9 @@ colocarPolilla: numeroDePolillasAcolocar
 	cantidadDePolillas := cantidadDePolillas + numeroDePolillasAcolocar.
 	hayPolilla := true.! !
 
-!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 12:44:29'!
-hayAlimento
-	^cantidadDeAlimento > 0.! !
+!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 17:36:09'!
+decrementarCantidadDeHuevoDeAvispas: cantidadHuevosAquitar
+	cantidadDeHuevosDeAvispas := cantidadDeHuevosDeAvispas - cantidadHuevosAquitar.! !
 
 !Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 12:45:47'!
 hayOrugas
@@ -74,44 +54,99 @@ hayOrugas
 hayPolillas
 	^cantidadDePolillas > 0.! !
 
-!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 12:25:45'!
-matarAvispas
-	cantidadDeHuevosDeAvispas := 0.
+!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 16:38:21'!
+incremenarCantidadDeHuevosDeAvispas: cantidadAincrementarDeHuevos
+	cantidadDeHuevosDeAvispas := cantidadDeHuevosDeAvispas + cantidadAincrementarDeHuevos.! !
+
+!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 14:24:42'!
+matarTodasLasAvispas
+	self quitarTodosLosHuevos.
 	hayAvispas:=false.! !
 
-!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 12:11:59'!
-matarOrugas
+!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 14:25:21'!
+matarTodasLasOrugas
 	cantidadDeOrugasDeAvispas := 0.
 	hayOruga:= false.! !
 
-!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 12:25:58'!
-matarPolillas
+!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 14:25:03'!
+matarTodasLasPolillas
 	cantidadDePolillas := 0.
 	hayPolillas := false.! !
 
-!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 12:43:47'!
-quitarAlimento
-	cantidadDeAlimento :=0.
-	hayAimento := false! !
+!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 17:26:15'!
+quitarTodosLosHuevos
+	cantidadDeHuevosDeAvispas := 0.
+	LaAvispaOriana reiniciarCantidadDeHueavosDeAvispaOriana.
+	LaAvispaOrnella reiniciarCantidadDeHuevosDeAvispaOrnella.
+	LaAvispaPolly reiniciarCantidadDeHuevosDeAvispaPolly.
+	LaAvispaLara reiniciarCantidadDeHueavosDeAvispaLara.! !
+
+!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 18:28:37'!
+quitarUnaCantidadDeOrugas: cantidadOrugasAquitar
+	cantidadDeOrugasDeAvispas := cantidadDeOrugasDeAvispas - cantidadOrugasAquitar.! !
+
+!Habitat class methodsFor: 'setters' stamp: 'JMK 4/25/2022 14:28:44'!
+quitarUnaCantidadDePolillas: cantidadPolillasQuitar
+	cantidadDePolillas := cantidadDePolillas - cantidadPolillasQuitar.! !
 
 
-!Habitat class methodsFor: '--** private fileout/in **--' stamp: 'JMK 4/25/2022 13:23:53'!
+!Habitat class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 18:53:06'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
-	cantidadHuevosAvispaOrnella := nil.
-	cantidadDeAlimento := 1.
+	cantidadDeAlimento := 0.
 	hayAvispas := false.
-	cantidadDePolillas := -1.
+	cantidadDePolillas := 1.
 	cantidadDeAvispas := nil.
-	cantidadDeOrugasDeAvispas := -1.
-	hayAimento := true.
+	cantidadDeOrugasDeAvispas := 0.
+	hayAimento := false.
 	cantidadDeHuevosDeAvispas := 1.
 	hayOruga := false.
 	hayPolilla := true.
-	hayPolillas := false.
-	cantidadHuevosAvispaOriana := nil.
-	cantidadHuevosAvispaPolly := nil.! !
+	hayPolillas := false.! !
+
+
+!classDefinition: #LaAvispaLara category: 'AvispasYAbejasParte2'!
+DenotativeObject subclass: #LaAvispaLara
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'AvispasYAbejasParte2'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'LaAvispaLara class' category: 'AvispasYAbejasParte2'!
+LaAvispaLara class
+	instanceVariableNames: 'cantidadHuevosAvispaLara'!
+
+!LaAvispaLara class methodsFor: 'actions' stamp: 'Joel 4/25/2022 18:50:18'!
+intentarReproducirse
+	(Habitat cantidadDeHuevosDeAvispas > 0 ) ifTrue:  [self robarHuevo.]! !
+
+!LaAvispaLara class methodsFor: 'actions' stamp: 'JMK 4/25/2022 17:20:09'!
+reiniciarCantidadDeHueavosDeAvispaLara
+	cantidadHuevosAvispaLara := 0.! !
+
+!LaAvispaLara class methodsFor: 'actions' stamp: 'JMK 4/25/2022 18:18:00'!
+robarHuevo
+	cantidadHuevosAvispaLara := cantidadHuevosAvispaLara + Habitat cantidadDeHuevosDeAvispas.
+	LaAvispaOriana cantidadHuevosAvispaOriana > 0 ifTrue: LaAvispaOriana perderHuevo.
+	LaAvispaOrnella cantidadHuevosAvispaOrnella > 0 ifTrue: LaAvispaOrnella perderHuevo.
+	LaAvispaPolly cantidadHuevosAvispaPolly > 0 ifTrue: LaAvispaPolly perderHuevo.
+	Habitat IncrementarUnaCantidadDeOrugasDeAvispas: cantidadHuevosAvispaLara.
+	Habitat incremenarCantidadDeHuevosDeAvispas: cantidadHuevosAvispaLara.! !
+
+
+!LaAvispaLara class methodsFor: 'getters' stamp: 'JMK 4/25/2022 17:19:11'!
+cantidadHuevosAvispaLara
+	^cantidadHuevosAvispaLara! !
+
+
+!LaAvispaLara class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 18:53:06'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	cantidadHuevosAvispaLara := 0.! !
 
 
 !classDefinition: #LaAvispaOriana category: 'AvispasYAbejasParte2'!
@@ -125,18 +160,39 @@ DenotativeObject subclass: #LaAvispaOriana
 
 !classDefinition: 'LaAvispaOriana class' category: 'AvispasYAbejasParte2'!
 LaAvispaOriana class
-	instanceVariableNames: 'cantidadDeHuevosPuestos'!
+	instanceVariableNames: 'cantidadHuevosAvispaOriana'!
 
-!LaAvispaOriana class methodsFor: 'actions' stamp: 'JMK 4/25/2022 13:10:28'!
+!LaAvispaOriana class methodsFor: 'actions' stamp: 'Joel 4/25/2022 18:40:13'!
+colocarHuevo
+	cantidadHuevosAvispaOriana := cantidadHuevosAvispaOriana + 1.
+	Habitat incremenarCantidadDeHuevosDeAvispas: 1.
+	Habitat quitarUnaCantidadDeOrugas: 1.! !
+
+!LaAvispaOriana class methodsFor: 'actions' stamp: 'Joel 4/25/2022 18:38:37'!
 intentarReproducirse
-	(Habitat hayAlimento | Habitat hayOrugas) ifTrue: [Habitat cantidadDeAvispas > 0 ifTrue:[Habitat colocarHuevo.]]! !
+	Habitat hayOrugas ifTrue:  [self colocarHuevo]! !
+
+!LaAvispaOriana class methodsFor: 'actions' stamp: 'JMK 4/25/2022 18:16:01'!
+perderHuevo
+	Habitat decrementarCantidadDeHuevoDeAvispas: cantidadHuevosAvispaOriana.
+	cantidadHuevosAvispaOriana := 0.
+	! !
+
+!LaAvispaOriana class methodsFor: 'actions' stamp: 'JMK 4/25/2022 16:57:12'!
+reiniciarCantidadDeHueavosDeAvispaOriana
+	cantidadHuevosAvispaOriana := 0.! !
 
 
-!LaAvispaOriana class methodsFor: '--** private fileout/in **--' stamp: 'JMK 4/25/2022 13:23:53'!
+!LaAvispaOriana class methodsFor: 'getters' stamp: 'JMK 4/25/2022 14:36:41'!
+cantidadHuevosAvispaOriana
+	^cantidadHuevosAvispaOriana! !
+
+
+!LaAvispaOriana class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 18:53:06'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
-	cantidadDeHuevosPuestos := nil.! !
+	cantidadHuevosAvispaOriana := 0.! !
 
 
 !classDefinition: #LaAvispaOrnella category: 'AvispasYAbejasParte2'!
@@ -150,18 +206,38 @@ DenotativeObject subclass: #LaAvispaOrnella
 
 !classDefinition: 'LaAvispaOrnella class' category: 'AvispasYAbejasParte2'!
 LaAvispaOrnella class
-	instanceVariableNames: 'cantidadDeHuevosPuestos'!
+	instanceVariableNames: 'cantidadHuevosAvispaOrnella'!
 
-!LaAvispaOrnella class methodsFor: 'actions' stamp: 'JMK 4/25/2022 13:10:37'!
+!LaAvispaOrnella class methodsFor: 'actions' stamp: 'Joel 4/25/2022 18:46:06'!
+colocarHuevo
+	cantidadHuevosAvispaOrnella  := cantidadHuevosAvispaOrnella + 1.
+	Habitat quitarUnaCantidadDeOrugas: 1.
+	Habitat incremenarCantidadDeHuevosDeAvispas: 1.! !
+
+!LaAvispaOrnella class methodsFor: 'actions' stamp: 'Joel 4/25/2022 18:45:31'!
 intentarReproducirse
-	(Habitat hayAlimento | Habitat hayOrugas) ifTrue: [Habitat cantidadDeAvispas > 0 ifTrue:[Habitat colocarHuevo.]]! !
+	Habitat hayOrugas ifTrue:[self colocarHuevo]! !
+
+!LaAvispaOrnella class methodsFor: 'actions' stamp: 'JMK 4/25/2022 18:16:19'!
+perderHuevo
+	Habitat decrementarCantidadDeHuevoDeAvispas: cantidadHuevosAvispaOrnella .
+	cantidadHuevosAvispaOrnella := 0 .! !
+
+!LaAvispaOrnella class methodsFor: 'actions' stamp: 'JMK 4/25/2022 16:57:42'!
+reiniciarCantidadDeHuevosDeAvispaOrnella
+	cantidadHuevosAvispaOrnella := 0.! !
 
 
-!LaAvispaOrnella class methodsFor: '--** private fileout/in **--' stamp: 'JMK 4/25/2022 13:23:53'!
+!LaAvispaOrnella class methodsFor: 'getters' stamp: 'JMK 4/25/2022 13:47:02'!
+cantidadHuevosAvispaOrnella
+	^cantidadHuevosAvispaOrnella.! !
+
+
+!LaAvispaOrnella class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 18:53:06'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
-	cantidadDeHuevosPuestos := nil.! !
+	cantidadHuevosAvispaOrnella := 0.! !
 
 
 !classDefinition: #LaAvispaPolly category: 'AvispasYAbejasParte2'!
@@ -175,18 +251,38 @@ DenotativeObject subclass: #LaAvispaPolly
 
 !classDefinition: 'LaAvispaPolly class' category: 'AvispasYAbejasParte2'!
 LaAvispaPolly class
-	instanceVariableNames: 'cantidadDeHuevosPuestos'!
+	instanceVariableNames: 'cantidadHuevosAvispaPolly'!
 
-!LaAvispaPolly class methodsFor: 'actions' stamp: 'JMK 4/25/2022 13:10:44'!
+!LaAvispaPolly class methodsFor: 'actions' stamp: 'Joel 4/25/2022 18:49:00'!
+colocarHuevo
+	cantidadHuevosAvispaPolly := cantidadHuevosAvispaPolly +1.
+	Habitat incremenarCantidadDeHuevosDeAvispas: 1.
+	Habitat quitarUnaCantidadDePolillas: 1.! !
+
+!LaAvispaPolly class methodsFor: 'actions' stamp: 'Joel 4/25/2022 18:48:38'!
 intentarReproducirse
-	(Habitat hayAlimento | Habitat hayPolillas) ifTrue: [Habitat cantidadDeAvispas > 0 ifTrue:[Habitat colocarHuevo.]]! !
+	(Habitat hayPolillas) ifTrue: [self colocarHuevo]! !
+
+!LaAvispaPolly class methodsFor: 'actions' stamp: 'JMK 4/25/2022 18:15:36'!
+perderHuevo
+	Habitat decrementarCantidadDeHuevoDeAvispas: cantidadHuevosAvispaPolly.
+	cantidadHuevosAvispaPolly := 0.! !
+
+!LaAvispaPolly class methodsFor: 'actions' stamp: 'JMK 4/25/2022 16:58:07'!
+reiniciarCantidadDeHuevosDeAvispaPolly
+	cantidadHuevosAvispaPolly := 0.! !
 
 
-!LaAvispaPolly class methodsFor: '--** private fileout/in **--' stamp: 'JMK 4/25/2022 13:23:53'!
+!LaAvispaPolly class methodsFor: 'getters' stamp: 'JMK 4/25/2022 13:49:23'!
+cantidadHuevosAvispaPolly
+	^cantidadHuevosAvispaPolly.! !
+
+
+!LaAvispaPolly class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 18:53:06'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
-	cantidadDeHuevosPuestos := nil.! !
+	cantidadHuevosAvispaPolly := 1.! !
 
 
 !classDefinition: #PruebasReproduccionDeAvispas category: 'AvispasYAbejasParte2'!
@@ -357,7 +453,7 @@ test17CuandoOrnellaLaAvispaSeReproduceDejaUnHuevoConLaMismaFirmaGeneticaQueOrian
 		isEqualTo: self cantidadDeHuevosConLaFirmaGeneticaDeOriana! !
 
 
-!PruebasReproduccionDeAvispas class methodsFor: 'tests - Lara la ladrona' stamp: 'JMB 4/21/2022 12:15:27'!
+!PruebasReproduccionDeAvispas class methodsFor: 'tests - Lara la ladrona' stamp: 'JMK 4/25/2022 17:47:44'!
 test18CuandoLaraLaAvispaSeReproduceDejaUnHuevoConSuFirmaGenetica
 	self retrocederElHabitatAlInicioDeLosTiempos. 
 	self hacerQueElHabitatTengaLosRecursosSuficientes.
@@ -367,7 +463,7 @@ test18CuandoLaraLaAvispaSeReproduceDejaUnHuevoConSuFirmaGenetica
 	
 	Assert that: self cantidadDeHuevosConLaFirmaGeneticaDeLara isEqualTo: 1.! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'tests - Lara la ladrona' stamp: 'JMB 4/21/2022 12:15:22'!
+!PruebasReproduccionDeAvispas class methodsFor: 'tests - Lara la ladrona' stamp: 'JMK 4/25/2022 17:47:38'!
 test19CuandoLaraLaAvispaSeReproduceLeSacaElHuevoAOtraAvispa
 	self retrocederElHabitatAlInicioDeLosTiempos. 
 	self hacerQueElHabitatTengaLosRecursosSuficientes.
@@ -377,7 +473,7 @@ test19CuandoLaraLaAvispaSeReproduceLeSacaElHuevoAOtraAvispa
 	
 	Assert that: self cantidadDeHuevosConLaFirmaGeneticaDeOriana isEqualTo: 0.! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'tests - Lara la ladrona' stamp: 'JMB 4/21/2022 12:15:18'!
+!PruebasReproduccionDeAvispas class methodsFor: 'tests - Lara la ladrona' stamp: 'JMK 4/25/2022 17:47:32'!
 test20CuandoLaraLaAvispaSeReproduceLeSacaElHuevoAPolly
 	self retrocederElHabitatAlInicioDeLosTiempos. 
 	self hacerQueElHabitatTengaLosRecursosSuficientes.
@@ -396,33 +492,35 @@ test21CuandoLaraLaAvispaNoTieneRecursosNoDejaUnHuevo
 	Assert that: self cantidadDeHuevosConLaFirmaGeneticaDeLara isEqualTo: 0.! !
 
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:14:52'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMK 4/25/2022 17:21:03'!
 cantidadDeHuevosConLaFirmaGeneticaDeLara
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	^LaAvispaLara cantidadHuevosAvispaLara ! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMK 4/25/2022 13:16:52'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMK 4/25/2022 17:15:46'!
 cantidadDeHuevosConLaFirmaGeneticaDeOriana
-	^Habitat cantidadHuevosAvispaOriana.! !
+	^LaAvispaOriana cantidadHuevosAvispaOriana + LaAvispaOrnella cantidadHuevosAvispaOrnella.! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMK 4/25/2022 13:16:39'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMK 4/25/2022 17:15:33'!
 cantidadDeHuevosConLaFirmaGeneticaDeOrnella
-	^Habitat cantidadHuevosAvispaOrnella.! !
+	^LaAvispaOriana cantidadHuevosAvispaOriana + LaAvispaOrnella cantidadHuevosAvispaOrnella.! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMK 4/25/2022 13:16:20'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMK 4/25/2022 16:52:00'!
 cantidadDeHuevosConLaFirmaGeneticaDePolly
-	^Habitat cantidadHuevosAvispaPolly.! !
+	^LaAvispaPolly cantidadHuevosAvispaPolly .! !
 
 !PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMK 4/21/2022 19:49:59'!
 habitat
 	^Habitat! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMK 4/25/2022 12:50:29'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'Joel 4/25/2022 18:48:03'!
 hacerQueElHabitatTengaLosRecursosSuficientes
-	Habitat colocarAlimento ! !
+	Habitat colocarOruga: 10.
+	Habitat colocarPolilla: 10.! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMB 4/19/2022 19:14:28'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMK 4/25/2022 17:22:08'!
 laAvispaLara
-	Assert isTrue: false description: 'Reemplazar esto por la implementación correspondiente'.! !
+	^LaAvispaLara 
+	! !
 
 !PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMK 4/21/2022 19:55:50'!
 laAvispaOriana
@@ -452,21 +550,21 @@ queElHabitatTengaUnaOrugaMas
 queElHabitatTengaUnaPolillaMas
 	self habitat colocarPolilla: 1.! !
 
-!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'JMK 4/25/2022 12:30:22'!
+!PruebasReproduccionDeAvispas class methodsFor: 'Para completar' stamp: 'Joel 4/25/2022 18:52:27'!
 retrocederElHabitatAlInicioDeLosTiempos
-	Habitat quitarAlimento.
-	Habitat matarAvispas.
-	Habitat matarOrugas.
-	Habitat matarPolillas.! !
+	Habitat matarTodasLasAvispas.
+	Habitat matarTodasLasOrugas.
+	Habitat matarTodasLasPolillas.! !
 
 
-!PruebasReproduccionDeAvispas class methodsFor: '--** private fileout/in **--' stamp: 'JMK 4/25/2022 13:23:53'!
+!PruebasReproduccionDeAvispas class methodsFor: '--** private fileout/in **--' stamp: 'Joel 4/25/2022 18:53:06'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
 	test01EnElInicioDeLosTiemposNoHayHuevos := nil.! !
 
 Habitat initializeAfterFileIn!
+LaAvispaLara initializeAfterFileIn!
 LaAvispaOriana initializeAfterFileIn!
 LaAvispaOrnella initializeAfterFileIn!
 LaAvispaPolly initializeAfterFileIn!
