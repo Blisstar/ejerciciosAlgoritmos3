@@ -1,4 +1,4 @@
-!classDefinition: #CantSuspend category: #'CodigoRepetido-Ejercicio'!
+!classDefinition: #CantSuspend category: 'CodigoRepetido-Ejercicio'!
 Error subclass: #CantSuspend
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -6,7 +6,7 @@ Error subclass: #CantSuspend
 	category: 'CodigoRepetido-Ejercicio'!
 
 
-!classDefinition: #NotFound category: #'CodigoRepetido-Ejercicio'!
+!classDefinition: #NotFound category: 'CodigoRepetido-Ejercicio'!
 Error subclass: #NotFound
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -14,7 +14,7 @@ Error subclass: #NotFound
 	category: 'CodigoRepetido-Ejercicio'!
 
 
-!classDefinition: #CustomerBookTest category: #'CodigoRepetido-Ejercicio'!
+!classDefinition: #CustomerBookTest category: 'CodigoRepetido-Ejercicio'!
 TestCase subclass: #CustomerBookTest
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -162,77 +162,70 @@ test08CanNotSuspendAnAlreadySuspendedCustomer
 ! !
 
 
-!classDefinition: #CustomerBook category: #'CodigoRepetido-Ejercicio'!
+!classDefinition: #CustomerBook category: 'CodigoRepetido-Ejercicio'!
 Object subclass: #CustomerBook
-	instanceVariableNames: 'suspended active'
+	instanceVariableNames: 'suspended active customers'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'CodigoRepetido-Ejercicio'!
 
-!CustomerBook methodsFor: 'testing' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'testing' stamp: 'Joel 4/30/2022 14:38:16'!
 includesCustomerNamed: aName
 
-	^(active includes: aName) or: [ suspended includes: aName ]! !
+	^customers includesKey: aName ! !
 
-!CustomerBook methodsFor: 'testing' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'testing' stamp: 'Joel 4/30/2022 14:37:30'!
 isEmpty
 	
-	^active isEmpty and: [ suspended isEmpty ]! !
+	^customers isEmpty! !
 
 
-!CustomerBook methodsFor: 'initialization' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'initialization' stamp: 'Joel 4/30/2022 14:16:36'!
 initialize
 
 	super initialize.
-	active := OrderedCollection new.
-	suspended:= OrderedCollection new.! !
+	customers := Dictionary new.! !
 
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'customer management' stamp: 'Joel 4/30/2022 14:46:06'!
 addCustomerNamed: aName
 
-	aName isEmpty ifTrue: [ self signalCustomerNameCannotBeEmpty ].
-	((active includes: aName) or: [suspended includes: aName]) ifTrue: [ self signalCustomerAlreadyExists ].
+	(aName isEmpty) ifTrue:[ self signalCustomerNameCannotBeEmpty ].
 	
-	active add: aName ! !
+	(self includesCustomerNamed: aName) ifTrue:[ self signalCustomerAlreadyExists ].
+	
+	customers at:aName put:'Active'! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'customer management' stamp: 'Joel 4/30/2022 14:32:02'!
 numberOfActiveCustomers
 	
-	^active size! !
+	^self numberOfCustomers: 'Active'! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'customer management' stamp: 'Joel 4/30/2022 14:30:57'!
 numberOfCustomers
 	
-	^active size + suspended size! !
+	^customers size! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 9/19/2018 17:36:09'!
+!CustomerBook methodsFor: 'customer management' stamp: 'Joel 4/30/2022 14:41:49'!
+numberOfCustomers: customerState
+	| count |
+	count := 0.
+	customers keysDo: [:aCustomerName|
+		((customers at:aCustomerName) = customerState) ifTrue:[count := count + 1.]
+	].
+	^count! !
+
+!CustomerBook methodsFor: 'customer management' stamp: 'Joel 4/30/2022 14:32:27'!
 numberOfSuspendedCustomers
 	
-	^suspended size! !
+	^self numberOfCustomers: 'Suspended'! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'customer management' stamp: 'Joel 4/30/2022 14:49:15'!
 removeCustomerNamed: aName 
  
-	1 to: active size do: 
-	[ :index |
-		aName = (active at: index)
-			ifTrue: [
-				active removeAt: index.
-				^ aName 
-			] 
-	].
-
-	1 to: suspended size do: 	
-	[ :index |
-		aName = (suspended at: index)
-			ifTrue: [
-				suspended removeAt: index.
-				^ aName 
-			] 
-	].
+	(self includesCustomerNamed: aName) ifFalse: [^ NotFound signal.].
 	
-	^ NotFound signal.
+	customers removeKey: aName
 ! !
 
 !CustomerBook methodsFor: 'customer management' stamp: 'HernanWilkinson 7/6/2011 17:52'!
@@ -245,19 +238,18 @@ signalCustomerNameCannotBeEmpty
 
 	self error: self class customerCanNotBeEmptyErrorMessage ! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'customer management' stamp: 'Joel 4/30/2022 14:58:13'!
 suspendCustomerNamed: aName 
 	
-	(active includes: aName) ifFalse: [^CantSuspend signal].
+	(self includesCustomerNamed: aName) ifFalse: [ ^CantSuspend signal. ].
+	((customers at:aName) = 'Suspended') ifTrue: [ ^CantSuspend signal. ].
 	
-	active remove: aName.
-	
-	suspended add: aName
+	customers at:aName put:'Suspended'
 ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'CustomerBook class' category: #'CodigoRepetido-Ejercicio'!
+!classDefinition: 'CustomerBook class' category: 'CodigoRepetido-Ejercicio'!
 CustomerBook class
 	instanceVariableNames: ''!
 
