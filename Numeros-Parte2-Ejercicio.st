@@ -366,9 +366,8 @@ Numero subclass: #Entero
 	poolDictionaries: ''
 	category: 'Numeros-Parte2-Ejercicio'!
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 17:07:54'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 19:46:13'!
 * aMultiplier 
-	
 	^self multiplicarConUnEntero: aMultiplier 
 	! !
 
@@ -404,11 +403,11 @@ fibonacci
 	^ (self - one) fibonacci + (self - two) fibonacci
 		! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 19:24:47'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 19:45:19'!
 multiplicarConUnEntero: aMultiplier
 	^ self integerValue * aMultiplier ! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 19:35:44'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 19:45:29'!
 sumarOrestarConUnEntero: aNumber
 	^self integerValue + aNumber! !
 
