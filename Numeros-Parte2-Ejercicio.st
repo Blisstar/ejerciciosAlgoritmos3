@@ -372,9 +372,9 @@ Numero subclass: #Entero
 	^self multiplicarConUnEntero: aMultiplier 
 	! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 17:34:11'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 19:35:25'!
 + anAdder 
-	^self sumarOrestarConUnEntero: anAdder 
+	^self sumarOrestarConUnEntero: anAdder
 ! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 17:51:57'!
@@ -386,9 +386,9 @@ Numero subclass: #Entero
 	^self dividirConUnEntero: aDivisor 
 	! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 19:07:31'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 19:22:38'!
 dividirConUnEntero: aDivisor
-	^Fraccion with: self integerValue  over: aDivisor! !
+	^Fraccion with: self over: aDivisor! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HAW 9/24/2018 08:47:50'!
 fibonacci
@@ -404,13 +404,13 @@ fibonacci
 	^ (self - one) fibonacci + (self - two) fibonacci
 		! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 19:07:08'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 19:24:47'!
 multiplicarConUnEntero: aMultiplier
-	^aMultiplier  * self integerValue ! !
+	^ self integerValue * aMultiplier ! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 19:06:42'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'JMK 5/8/2022 19:35:44'!
 sumarOrestarConUnEntero: aNumber
-	^aNumber + self integerValue ! !
+	^self integerValue + aNumber! !
 
 
 !Entero methodsFor: 'comparing' stamp: 'HernanWilkinson 5/7/2016 21:01'!
