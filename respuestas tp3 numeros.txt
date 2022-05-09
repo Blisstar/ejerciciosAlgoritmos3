@@ -1,0 +1,5 @@
+1. La clase en que pertenece y como responde llamados.
+2.-----
+3. Los categorizamos segun comportamiento y manera de responder llamados.
+4. Para que cada subclase pueda definir el mètodo del mensaje.
+5.-----
